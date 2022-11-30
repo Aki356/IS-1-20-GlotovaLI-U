@@ -16,5 +16,11 @@ namespace IS_1_20_GlotovaLI_U
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Accessories accssrs = new Accessories();
+            accssrs.ShowDialog();
+        }
     }
 }
