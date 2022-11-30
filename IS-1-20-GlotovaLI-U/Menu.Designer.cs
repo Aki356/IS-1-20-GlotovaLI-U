@@ -1,7 +1,7 @@
 ﻿
 namespace IS_1_20_GlotovaLI_U
 {
-    partial class Form1
+    partial class Menu
     {
         /// <summary>
         /// Обязательная переменная конструктора.

@@ -16,7 +16,7 @@ namespace IS_1_20_GlotovaLI_U
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new Menu());
         }
     }
 }
