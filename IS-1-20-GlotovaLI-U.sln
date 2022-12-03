@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31321.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IS-1-20-GlotovaLI-U", "IS-1-20-GlotovaLI-U\IS-1-20-GlotovaLI-U.csproj", "{A25A7369-0AD4-4E58-A667-199681AFCE31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Accessories", "Accessories\Accessories.csproj", "{884C48E6-7C38-45FF-B8DE-963720B03449}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acessori", "Acessori\Acessori.csproj", "{237003CC-FE6E-4DFB-8A78-43ED19BB4F49}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{A25A7369-0AD4-4E58-A667-199681AFCE31}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A25A7369-0AD4-4E58-A667-199681AFCE31}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A25A7369-0AD4-4E58-A667-199681AFCE31}.Release|Any CPU.Build.0 = Release|Any CPU
-		{884C48E6-7C38-45FF-B8DE-963720B03449}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{884C48E6-7C38-45FF-B8DE-963720B03449}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{884C48E6-7C38-45FF-B8DE-963720B03449}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{884C48E6-7C38-45FF-B8DE-963720B03449}.Release|Any CPU.Build.0 = Release|Any CPU
+		{237003CC-FE6E-4DFB-8A78-43ED19BB4F49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{237003CC-FE6E-4DFB-8A78-43ED19BB4F49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{237003CC-FE6E-4DFB-8A78-43ED19BB4F49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{237003CC-FE6E-4DFB-8A78-43ED19BB4F49}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
