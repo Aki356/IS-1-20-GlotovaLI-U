@@ -25,7 +25,9 @@ namespace IS_1_20_GlotovaLI_U
             }
             public string Display()
             {
-                return $"Артикул: {artic}\nЦена: {price} руб.\n{yearRelease} год.";
+                return $"Артикул: {artic} " +
+                    $"Цена: {price} руб. " +
+                    $"{yearRelease} год.";
             }
         }
         class Hdd<T> : Accessory<T>
@@ -103,5 +105,12 @@ namespace IS_1_20_GlotovaLI_U
                 MessageBox.Show("Возникла ошибка! Проверьте введенные данные.");
             }
         }
+
+        private void Accessories_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }
