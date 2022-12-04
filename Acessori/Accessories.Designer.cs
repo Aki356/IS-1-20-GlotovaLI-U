@@ -287,7 +287,7 @@ namespace Acessori
             // 
             // button4
             // 
-            this.button4.BackColor = System.Drawing.Color.SandyBrown;
+            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.button4.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button4.Location = new System.Drawing.Point(1224, 635);
             this.button4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
