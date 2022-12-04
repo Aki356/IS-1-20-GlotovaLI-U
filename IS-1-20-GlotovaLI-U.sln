@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IS-1-20-GlotovaLI-U", "IS-1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acessori", "Acessori\Acessori.csproj", "{237003CC-FE6E-4DFB-8A78-43ED19BB4F49}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connect_task2", "Connect_task2\Connect_task2.csproj", "{CC05BEC6-BA73-42FB-8170-50BC8A3B275F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{237003CC-FE6E-4DFB-8A78-43ED19BB4F49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{237003CC-FE6E-4DFB-8A78-43ED19BB4F49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{237003CC-FE6E-4DFB-8A78-43ED19BB4F49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC05BEC6-BA73-42FB-8170-50BC8A3B275F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC05BEC6-BA73-42FB-8170-50BC8A3B275F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC05BEC6-BA73-42FB-8170-50BC8A3B275F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC05BEC6-BA73-42FB-8170-50BC8A3B275F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

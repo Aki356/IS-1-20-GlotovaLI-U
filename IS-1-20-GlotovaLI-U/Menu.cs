@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Acessori;
+using Connect_task2;
 
 namespace IS_1_20_GlotovaLI_U
 {
@@ -22,6 +23,12 @@ namespace IS_1_20_GlotovaLI_U
         {
             Accessories accssrs = new Accessories();
             accssrs.ShowDialog();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form1 connct_t2 = new Form1();
+            connct_t2.ShowDialog();
         }
     }
 }
