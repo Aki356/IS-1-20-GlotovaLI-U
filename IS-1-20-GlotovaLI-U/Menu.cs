@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Acessori;
 using Connect_task2;
 using Connect_task3;
+using Task_N4;
 
 namespace IS_1_20_GlotovaLI_U
 {
@@ -36,6 +37,12 @@ namespace IS_1_20_GlotovaLI_U
         {
             ConnectN3 conn_n3 = new ConnectN3();
             conn_n3.ShowDialog();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Form2 form2 = new Form2();
+            form2.ShowDialog();
         }
     }
 }

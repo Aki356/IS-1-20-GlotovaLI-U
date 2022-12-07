@@ -220,6 +220,9 @@ namespace Connect_task3
             dataGridView1.ColumnHeadersVisible = true;
         }
 
-        
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
