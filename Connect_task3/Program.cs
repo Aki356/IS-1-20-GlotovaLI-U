@@ -7,19 +7,30 @@ using MySql.Data.MySqlClient;
 
 namespace Connect_task3
 {
+    static class Auth
+    {
+        //Статичное поле, которое хранит значение статуса авторизации
+        public static bool auth = false;
+        //Статичное поле, которое хранит значения ID пользователя
+        public static string auth_id = null;
+        //Статичное поле, которое хранит значения ФИО пользователя
+        public static string auth_title = null;
+
+    }
+    public class Connectd
+    {
+        public static MySqlConnection Conn()
+        {
+            string connStr = "server=chuc.caseum.ru;port=33333;user=st_1_20_8;database=is_1_20_st8_KURS;password=43660467;";
+            //Переменная соединения
+            MySqlConnection conn = new MySqlConnection(connStr);
+            return conn;
+        }
+
+
+    }
     static class Program
     {
-        class Connectd
-        {
-            public MySqlConnection Conn()
-            {
-                string connStr = "server=chuc.caseum.ru;port=33333;user=st_1_20_8;database=uchebka;password=uchebka;";
-                //Переменная соединения
-                MySqlConnection conn = new MySqlConnection(connStr);
-                return conn;
-            }
-            
-        }
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>
