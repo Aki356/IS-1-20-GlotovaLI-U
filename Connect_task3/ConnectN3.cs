@@ -31,26 +31,25 @@ namespace Connect_task3
         //что бы в БД не отправлялся null
         string id_selected_rows = "0";
 
-        //Метод обновления DataGreed
-        public void reload_list()
-        {
-            //Чистим виртуальную таблицу
-            table.Clear();
-            //Вызываем метод получения записей, который вновь заполнит таблицу
-            DB();
-        }
 
         //Метод получения ID выделенной строки, для последующего вызова его в нужных методах
         public void GetSelectedIDString()
         {
-            //Переменная для индекс выбранной строки в гриде
-            string index_selected_rows;
-            //Индекс выбранной строки
-            index_selected_rows = dataGridView1.SelectedCells[0].RowIndex.ToString();
-            //ID конкретной записи в Базе данных, на основании индекса строки
-            id_selected_rows = dataGridView1.Rows[Convert.ToInt32(index_selected_rows)].Cells[0].Value.ToString();
-            //Указываем ID выделенной строки в метке
-            toolStripLabel1.Text = id_selected_rows;
+            try
+            {
+                //Переменная для индекс выбранной строки в гриде
+                string index_selected_rows;
+                //Индекс выбранной строки
+                index_selected_rows = dataGridView1.SelectedCells[0].RowIndex.ToString();
+                //ID конкретной записи в Базе данных, на основании индекса строки
+                id_selected_rows = dataGridView1.Rows[Convert.ToInt32(index_selected_rows)].Cells[0].Value.ToString();
+                //Указываем ID выделенной строки в метке
+                toolStripLabel1.Text = id_selected_rows;
+            }
+            catch
+            {
+                MessageBox.Show("Возникла ошибка!");
+            }
         }
         //Выделение всей строки по ЛКМ
         private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -61,53 +60,73 @@ namespace Connect_task3
             //Метод получения ID выделенной строки в глобальную переменную
             GetSelectedIDString();
         }
-        
-        public void getCellValue()
+        public void idOrder(string id)
         {
-            string index_selected_rows;
-            //Индекс выбранной строки
-            index_selected_rows = dataGridView1.SelectedCells[0].RowIndex.ToString();
-            //ID конкретной записи в Базе данных, на основании индекса строки
-            id_selected_rows = dataGridView1.Rows[Convert.ToInt32(index_selected_rows)].Cells[0].Value.ToString();
-            string sql = $"SELECT " +
-                $"MainOrder.id_Order, " +
-                $"Clients.firstname_Client, " +
-                $"Status.title_Status, " +
-                $"MainOrder.time_Order, " +
-                $"Employ.lastname_Employ, " +
-                $"MainOrder.totalCount_Order, " +
-                $"MainOrder.dt_Order " +
-                $"FROM Clients " +
-                $"INNER JOIN (Employ " +
-                $"INNER JOIN (Status " +
-                $"INNER JOIN MainOrder ON Status.id_Status = MainOrder.status_Order) " +
-                $"ON Employ.id_Employ = MainOrder.employ_Order) " +
-                $"ON Clients.id_Client = MainOrder.client_Order WHERE MainOrder.id_Order = {id_selected_rows}";
-            conn.Open();
-            MySqlCommand command = new MySqlCommand(sql, conn);
-            MySqlDataReader reader = command.ExecuteReader();
-            // читаем результат
-            while (reader.Read())
+            try
             {
-                // элементы массива [] - это значения столбцов из запроса SELECT
-                Auth.order_id = reader[0].ToString();
-                Auth.order_client = reader[1].ToString();
-                Auth.order_status = reader[2].ToString();
-                Auth.order_time = reader[3].ToString();
-                Auth.order_employ = reader[4].ToString();
-                Auth.order_totalCount = reader[5].ToString();
-                Auth.order_dt = reader[6].ToString();
+                string sql = "SELECT * FROM MainOrder WHERE id_Order = @id";
+                using (conn)
+                {
+                    using (MySqlCommand command = new MySqlCommand(sql, conn))
+                    {
+                        conn.Open();
+                        MySqlParameter nameParam = new MySqlParameter("@id", id);
+
+                        command.Parameters.Add(nameParam);
+                        MySqlDataReader reader = command.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            // элементы массива [] - это значения столбцов из запроса SELECT
+                            Auth.order_id = reader[0].ToString();
+                            Auth.order_client = reader[1].ToString();
+                            Auth.order_status = reader[2].ToString();
+                            Auth.order_time = reader[3].ToString();
+                            Auth.order_employ = reader[4].ToString();
+                            Auth.order_totalCount = reader[5].ToString();
+                            Auth.order_dt = reader[6].ToString();
+                        }
+                        reader.Close(); // закрываем reader
+                                        // закрываем соединение с БД
+                        conn.Close();
+                    }
+                }
             }
-            reader.Close();
-            MessageBox.Show(string.Format("ID: {0}", reader["id_Order"]));
+            catch
+            {
+                MessageBox.Show("Возникла ошибка!");
+            }
+
         }
+        //вывод строки из таблицы по двойному щелчку
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+            try
             {
-                MessageBox.Show("ID: " + dataGridView1.CurrentRow.Cells["Код заказа"].Value.ToString()+ "Клиент: " + dataGridView1.CurrentRow.Cells["Клиент"].Value.ToString() + "Статус заказа: " + dataGridView1.CurrentRow.Cells["Статус заказа"].Value.ToString());
+                string index_selected_rows;
+                //Индекс выбранной строки
+                index_selected_rows = dataGridView1.SelectedCells[0].RowIndex.ToString();
+                //ID конкретной записи в Базе данных, на основании индекса строки
+                id_selected_rows = dataGridView1.Rows[Convert.ToInt32(index_selected_rows)].Cells[0].Value.ToString();
+                idOrder(id_selected_rows);
+                // запрос
+
+                if (dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+                {
+                    MessageBox.Show("ID: " + Auth.order_id +
+                        "\nКлиент: " + Auth.order_client +
+                        "\nСтатус заказа: " + Auth.order_status +
+                        "\nВремя заказа: " + Auth.order_time +
+                        "\nРаботник: " + Auth.order_employ +
+                        "\nЦена: " + Auth.order_totalCount +
+                        "\nДата заказа: " + Auth.order_dt);
+                }
             }
-            conn.Close();
+            catch
+            {
+                MessageBox.Show("Возникла ошибка!");
+            }
+
         }
 
 
@@ -115,9 +134,9 @@ namespace Connect_task3
         
         public void DB()
         {
-            
-            // запрос
-            string sql = $"SELECT " +
+            try
+            {
+                string sql = $"SELECT " +
                 $"MainOrder.id_Order AS 'Код заказа', " +
                 $"Clients.firstname_Client AS 'Клиент', " +
                 $"Status.title_Status AS 'Статус заказа', " +
@@ -131,20 +150,26 @@ namespace Connect_task3
                 $"INNER JOIN MainOrder ON Status.id_Status = MainOrder.status_Order) " +
                 $"ON Employ.id_Employ = MainOrder.employ_Order) " +
                 $"ON Clients.id_Client = MainOrder.client_Order";
-            conn.Open();
-            // объект для выполнения SQL-запроса
-            MyDA.SelectCommand = new MySqlCommand(sql, conn);
-            //Заполняем таблицу записями из БД
-            MyDA.Fill(table);
-            //Указываем, что источником данных в bindingsource является заполненная выше таблица
-            bSource.DataSource = table;
-            //Указываем, что источником данных ДатаГрида является bindingsource 
-            dataGridView1.DataSource = bSource;
-            //Закрываем соединение
-            conn.Close();
-            //Отражаем количество записей в ДатаГриде
-            int count_rows = dataGridView1.RowCount - 1;
-            toolStripLabel2.Text = (count_rows).ToString();
+                conn.Open();
+                // объект для выполнения SQL-запроса
+                MyDA.SelectCommand = new MySqlCommand(sql, conn);
+                //Заполняем таблицу записями из БД
+                MyDA.Fill(table);
+                //Указываем, что источником данных в bindingsource является заполненная выше таблица
+                bSource.DataSource = table;
+                //Указываем, что источником данных ДатаГрида является bindingsource 
+                dataGridView1.DataSource = bSource;
+                //Закрываем соединение
+                conn.Close();
+                //Отражаем количество записей в ДатаГриде
+                int count_rows = dataGridView1.RowCount - 1;
+                toolStripLabel2.Text = (count_rows).ToString();
+            }
+            catch
+            {
+                MessageBox.Show("Возникла ошибка!");
+            }
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
