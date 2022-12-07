@@ -49,7 +49,7 @@ namespace Task_N4
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(450, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(451, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(538, 699);
             this.pictureBox1.TabIndex = 2;
