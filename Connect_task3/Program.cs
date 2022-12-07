@@ -12,10 +12,14 @@ namespace Connect_task3
         //Статичное поле, которое хранит значение статуса авторизации
         public static bool auth = false;
         //Статичное поле, которое хранит значения ID пользователя
-        public static string auth_id = null;
+        public static string order_id = null;
         //Статичное поле, которое хранит значения ФИО пользователя
-        public static string auth_title = null;
-
+        public static string order_client = null;
+        public static string order_status = null;
+        public static string order_time = null;
+        public static string order_employ = null;
+        public static string order_totalCount = null;
+        public static string order_dt = null;
     }
     public class Connectd
     {

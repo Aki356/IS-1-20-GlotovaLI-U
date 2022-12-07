@@ -17,7 +17,7 @@ namespace Connect_task3
         {
             InitializeComponent();
         }
-        MySqlConnection conn;
+        
         private MySqlDataAdapter MyDA = new MySqlDataAdapter();
         //Объявление BindingSource, основная его задача, это обеспечить унифицированный доступ к источнику данных.
         private BindingSource bSource = new BindingSource();
@@ -50,21 +50,87 @@ namespace Connect_task3
             //ID конкретной записи в Базе данных, на основании индекса строки
             id_selected_rows = dataGridView1.Rows[Convert.ToInt32(index_selected_rows)].Cells[0].Value.ToString();
             //Указываем ID выделенной строки в метке
-            toolStripLabel4.Text = id_selected_rows;
+            toolStripLabel1.Text = id_selected_rows;
         }
+        //Выделение всей строки по ЛКМ
+        private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            //Магические строки
+            dataGridView1.CurrentCell = dataGridView1[e.ColumnIndex, e.RowIndex];
+            dataGridView1.CurrentRow.Selected = true;
+            //Метод получения ID выделенной строки в глобальную переменную
+            GetSelectedIDString();
+        }
+        
+        public void getCellValue()
+        {
+            string index_selected_rows;
+            //Индекс выбранной строки
+            index_selected_rows = dataGridView1.SelectedCells[0].RowIndex.ToString();
+            //ID конкретной записи в Базе данных, на основании индекса строки
+            id_selected_rows = dataGridView1.Rows[Convert.ToInt32(index_selected_rows)].Cells[0].Value.ToString();
+            string sql = $"SELECT " +
+                $"MainOrder.id_Order, " +
+                $"Clients.firstname_Client, " +
+                $"Status.title_Status, " +
+                $"MainOrder.time_Order, " +
+                $"Employ.lastname_Employ, " +
+                $"MainOrder.totalCount_Order, " +
+                $"MainOrder.dt_Order " +
+                $"FROM Clients " +
+                $"INNER JOIN (Employ " +
+                $"INNER JOIN (Status " +
+                $"INNER JOIN MainOrder ON Status.id_Status = MainOrder.status_Order) " +
+                $"ON Employ.id_Employ = MainOrder.employ_Order) " +
+                $"ON Clients.id_Client = MainOrder.client_Order WHERE MainOrder.id_Order = {id_selected_rows}";
+            conn.Open();
+            MySqlCommand command = new MySqlCommand(sql, conn);
+            MySqlDataReader reader = command.ExecuteReader();
+            // читаем результат
+            while (reader.Read())
+            {
+                // элементы массива [] - это значения столбцов из запроса SELECT
+                Auth.order_id = reader[0].ToString();
+                Auth.order_client = reader[1].ToString();
+                Auth.order_status = reader[2].ToString();
+                Auth.order_time = reader[3].ToString();
+                Auth.order_employ = reader[4].ToString();
+                Auth.order_totalCount = reader[5].ToString();
+                Auth.order_dt = reader[6].ToString();
+            }
+            reader.Close();
+            MessageBox.Show(string.Format("ID: {0}", reader["id_Order"]));
+        }
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+            {
+                MessageBox.Show("ID: " + dataGridView1.CurrentRow.Cells["Код заказа"].Value.ToString()+ "Клиент: " + dataGridView1.CurrentRow.Cells["Клиент"].Value.ToString() + "Статус заказа: " + dataGridView1.CurrentRow.Cells["Статус заказа"].Value.ToString());
+            }
+            conn.Close();
+        }
+
+
+        MySqlConnection conn = Connectd.Conn();
+        
         public void DB()
         {
+            
             // запрос
             string sql = $"SELECT " +
                 $"MainOrder.id_Order AS 'Код заказа', " +
-                $"MainOrder.client_Order AS 'Клиент', " +
-                $"MainOrder.status_Order AS 'Статус заказа', " +
+                $"Clients.firstname_Client AS 'Клиент', " +
+                $"Status.title_Status AS 'Статус заказа', " +
                 $"MainOrder.time_Order AS 'Время заказа', " +
-                $"MainOrder.employ_Order AS 'Работник', " +
+                $"Employ.lastname_Employ AS 'Работник', " +
                 $"MainOrder.totalCount_Order AS 'Цена', " +
                 $"MainOrder.dt_Order AS 'Дата заказа'" +
-                $"FROM MainOrder " +
-                $"";
+                $"FROM Clients " +
+                $"INNER JOIN (Employ " +
+                $"INNER JOIN (Status " +
+                $"INNER JOIN MainOrder ON Status.id_Status = MainOrder.status_Order) " +
+                $"ON Employ.id_Employ = MainOrder.employ_Order) " +
+                $"ON Clients.id_Client = MainOrder.client_Order";
             conn.Open();
             // объект для выполнения SQL-запроса
             MyDA.SelectCommand = new MySqlCommand(sql, conn);
@@ -80,6 +146,7 @@ namespace Connect_task3
             int count_rows = dataGridView1.RowCount - 1;
             toolStripLabel2.Text = (count_rows).ToString();
         }
+
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -87,7 +154,7 @@ namespace Connect_task3
 
         private void ConnectN3_Load(object sender, EventArgs e)
         {
-            MySqlConnection conn = Connectd.Conn();
+            
             DB();
             //Видимость полей в гриде
             dataGridView1.Columns[0].Visible = true;
@@ -127,5 +194,7 @@ namespace Connect_task3
             //Показываем заголовки столбцов
             dataGridView1.ColumnHeadersVisible = true;
         }
+
+        
     }
 }

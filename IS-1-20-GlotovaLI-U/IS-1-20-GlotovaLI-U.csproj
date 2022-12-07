@@ -88,6 +88,10 @@
       <Project>{cc05bec6-ba73-42fb-8170-50bc8a3b275f}</Project>
       <Name>Connect_task2</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Connect_task3\Connect_task3.csproj">
+      <Project>{54d1a1f0-6c4d-4461-9820-97bf917081a3}</Project>
+      <Name>Connect_task3</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
