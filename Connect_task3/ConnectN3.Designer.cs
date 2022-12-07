@@ -1,7 +1,7 @@
 ﻿
 namespace Connect_task3
 {
-    partial class Form1
+    partial class ConnectN3
     {
         /// <summary>
         /// Обязательная переменная конструктора.

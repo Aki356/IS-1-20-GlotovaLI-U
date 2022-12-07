@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Connect_task3
 {
-    public partial class Form1 : Form
+    public partial class ConnectN3 : Form
     {
-        public Form1()
+        public ConnectN3()
         {
             InitializeComponent();
         }
