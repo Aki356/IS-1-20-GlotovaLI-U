@@ -181,43 +181,50 @@ namespace Connect_task3
         {
             
             DB();
-            //Видимость полей в гриде
-            dataGridView1.Columns[0].Visible = true;
-            dataGridView1.Columns[1].Visible = true;
-            dataGridView1.Columns[2].Visible = true;
-            dataGridView1.Columns[3].Visible = true;
-            dataGridView1.Columns[4].Visible = true;
-            dataGridView1.Columns[5].Visible = true;
-            dataGridView1.Columns[6].Visible = true;
+            try
+            {
+                //Видимость полей в гриде
+                dataGridView1.Columns[0].Visible = true;
+                dataGridView1.Columns[1].Visible = true;
+                dataGridView1.Columns[2].Visible = true;
+                dataGridView1.Columns[3].Visible = true;
+                dataGridView1.Columns[4].Visible = true;
+                dataGridView1.Columns[5].Visible = true;
+                dataGridView1.Columns[6].Visible = true;
 
-            //Ширина полей
-            dataGridView1.Columns[0].FillWeight = 15;
-            dataGridView1.Columns[1].FillWeight = 40;
-            dataGridView1.Columns[2].FillWeight = 15;
-            dataGridView1.Columns[3].FillWeight = 30;
-            dataGridView1.Columns[4].FillWeight = 40;
-            dataGridView1.Columns[5].FillWeight = 15;
-            dataGridView1.Columns[6].FillWeight = 30;
-            //Режим для полей "Только для чтения"
-            dataGridView1.Columns[0].ReadOnly = true;
-            dataGridView1.Columns[1].ReadOnly = true;
-            dataGridView1.Columns[2].ReadOnly = true;
-            dataGridView1.Columns[3].ReadOnly = true;
-            dataGridView1.Columns[4].ReadOnly = true;
-            dataGridView1.Columns[5].ReadOnly = true;
-            dataGridView1.Columns[6].ReadOnly = true;
-            //Растягивание полей грида
-            dataGridView1.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridView1.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridView1.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridView1.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridView1.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            //Убираем заголовки строк
-            dataGridView1.RowHeadersVisible = false;
-            //Показываем заголовки столбцов
-            dataGridView1.ColumnHeadersVisible = true;
+                //Ширина полей
+                dataGridView1.Columns[0].FillWeight = 15;
+                dataGridView1.Columns[1].FillWeight = 40;
+                dataGridView1.Columns[2].FillWeight = 15;
+                dataGridView1.Columns[3].FillWeight = 30;
+                dataGridView1.Columns[4].FillWeight = 40;
+                dataGridView1.Columns[5].FillWeight = 15;
+                dataGridView1.Columns[6].FillWeight = 30;
+                //Режим для полей "Только для чтения"
+                dataGridView1.Columns[0].ReadOnly = true;
+                dataGridView1.Columns[1].ReadOnly = true;
+                dataGridView1.Columns[2].ReadOnly = true;
+                dataGridView1.Columns[3].ReadOnly = true;
+                dataGridView1.Columns[4].ReadOnly = true;
+                dataGridView1.Columns[5].ReadOnly = true;
+                dataGridView1.Columns[6].ReadOnly = true;
+                //Растягивание полей грида
+                dataGridView1.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dataGridView1.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dataGridView1.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dataGridView1.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dataGridView1.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                //Убираем заголовки строк
+                dataGridView1.RowHeadersVisible = false;
+                //Показываем заголовки столбцов
+                dataGridView1.ColumnHeadersVisible = true;
+            }
+            catch
+            {
+                MessageBox.Show("Возникла ошибка!");
+            }
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

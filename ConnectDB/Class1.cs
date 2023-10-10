@@ -13,7 +13,7 @@ namespace ConnectDB
         {
             public static MySqlConnection Conn()
             {
-                string connStr = "server=chuc.caseum.ru;port=33333;user=st_1_20_8;database=is_1_20_st8_KURS;password=43660467;";
+                string connStr = "server=chuc.sdlik.ru;port=33333;user=st_1_20_8;database=is_1_20_st8_KURS;password=43660467;";
                 //Переменная соединения
                 MySqlConnection conn = new MySqlConnection(connStr);
                 return conn;

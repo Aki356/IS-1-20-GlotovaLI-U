@@ -131,5 +131,10 @@ namespace Task_N4
             //Показываем заголовки столбцов
             dataGridView1.ColumnHeadersVisible = true;
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
