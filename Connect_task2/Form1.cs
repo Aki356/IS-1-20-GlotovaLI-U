@@ -22,8 +22,7 @@ namespace Connect_task2
                 MySqlConnection conn = new MySqlConnection(connStr);
                 return conn;
             }
-        }
-
+        } 
         MySqlConnection conn = Connctd.GetConnctn();
 
         public Form1()
